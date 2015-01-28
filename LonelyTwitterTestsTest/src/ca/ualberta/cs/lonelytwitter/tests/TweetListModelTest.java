@@ -42,4 +42,21 @@ public class TweetListModelTest extends
 			fail("An exception that was not IllegalArgumentException was thrown.");
 		}
 	}
+	
+	public void testThatGetTweetsReturnsTweetsInOrderTheyWereAdded() {
+		TwitterListModel tweets = new TwitterListModel();
+		NormalTweetModel tweet1 = new NormalTweetModel("test", new Date(3));
+		NormalTweetModel tweet2 = new NormalTweetModel("test 2", new Date(2));
+		NormalTweetModel tweet3 = new NormalTweetModel("test 3", new Date(1));
+		
+		tweets.addTweet(tweet1);
+		tweets.addTweet(tweet2);
+		tweets.addTweet(tweet3);
+		
+		LonelyTweetModel[] array = tweets.getTweets();
+		assertNotNull("Array returned from getTweets() is null.", array);
+		assertTrue("Tweets are in incorrect order.", array[0].equals(tweet1));
+		assertTrue("Tweets are in incorrect order.", array[1].equals(tweet2));
+		assertTrue("Tweets are in incorrect order.", array[1].equals(tweet3));
+	}
 }
