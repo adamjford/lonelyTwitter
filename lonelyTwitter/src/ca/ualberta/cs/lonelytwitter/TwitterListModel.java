@@ -4,15 +4,13 @@ import java.util.ArrayList;
 
 public class TwitterListModel {
 	private ArrayList<LonelyTweetModel> tweets;
-	private int count;
 	
 	public TwitterListModel() {
-		count = 0;
 		tweets = new ArrayList<LonelyTweetModel>();
 	}
 	
 	public int getListLength() {
-		return count;
+		return tweets.size();
 	}
 	
 	public void addTweet(LonelyTweetModel tweet) {
