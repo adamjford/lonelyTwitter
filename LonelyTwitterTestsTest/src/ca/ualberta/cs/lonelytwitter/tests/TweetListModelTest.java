@@ -76,4 +76,23 @@ public class TweetListModelTest extends
 		assertTrue("hasTweet() not returning true even though tweet was added.", tweets.hasTweet(tweet3));
 		assertFalse("hasTweet() not returning false even though tweet was not added.", tweets.hasTweet(tweet4));
 	}
+	
+	public void testThatRemoveTweetActuallyRemovesTheTweet() {
+		TwitterListModel tweets = new TwitterListModel();
+		NormalTweetModel tweet1 = new NormalTweetModel("test", new Date(3));
+		NormalTweetModel tweet2 = new NormalTweetModel("test 2", new Date(2));
+		NormalTweetModel tweet3 = new NormalTweetModel("test 3", new Date(1));
+		
+		tweets.addTweet(tweet1);
+		tweets.addTweet(tweet2);
+		tweets.addTweet(tweet3);
+
+		assertTrue("hasTweet() not returning true even though tweet was added.", tweets.hasTweet(tweet2));
+		assertEquals("getListLength() not accurately returning count.", 3, tweets.getListLength());
+		
+		tweets.removeTweet(tweet2);
+
+		assertFalse("hasTweet() not returning false even though tweet was removed.", tweets.hasTweet(tweet2));
+		assertEquals("getListLength() not accurately returning count after tweet removed.", 2, tweets.getListLength());
+	}
 }
