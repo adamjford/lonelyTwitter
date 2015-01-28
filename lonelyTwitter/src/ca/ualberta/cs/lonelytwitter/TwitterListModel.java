@@ -14,7 +14,21 @@ public class TwitterListModel {
 	}
 	
 	public void addTweet(LonelyTweetModel tweet) throws IllegalArgumentException {
+		if(duplicateTweetAlreadyExists(tweet)) {
+			throw new IllegalArgumentException("Duplicate tweets cannot be added.");
+		}
+		
 		tweets.add(tweet);
+	}
+	
+	private boolean duplicateTweetAlreadyExists(LonelyTweetModel newTweet) {
+		for(LonelyTweetModel tweet : tweets) {
+			if(tweet.equals(newTweet)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public LonelyTweetModel[] getTweets() {
