@@ -13,7 +13,22 @@ public class TwitterListModel {
 		return tweets.size();
 	}
 	
-	public void addTweet(LonelyTweetModel tweet) {
+	public void addTweet(LonelyTweetModel tweet) throws IllegalArgumentException {
 		tweets.add(tweet);
 	}
+	
+	public LonelyTweetModel[] getTweets() {
+		// NYI
+		return null;
+	}
+	
+	public boolean hasTweet(LonelyTweetModel tweet) {
+		// NYI
+		return false;
+	}
+	
+	public void removeTweet(LonelyTweetModel tweet) {
+		// NYI
+	}
 }
+
