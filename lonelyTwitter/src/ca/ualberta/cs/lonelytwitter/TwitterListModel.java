@@ -36,7 +36,7 @@ public class TwitterListModel {
 	}
 	
 	public void removeTweet(LonelyTweetModel tweet) {
-		// NYI
+		tweets.remove(tweet);
 	}
 }
 
