@@ -57,6 +57,6 @@ public class TweetListModelTest extends
 		assertNotNull("Array returned from getTweets() is null.", array);
 		assertTrue("Tweets are in incorrect order.", array[0].equals(tweet1));
 		assertTrue("Tweets are in incorrect order.", array[1].equals(tweet2));
-		assertTrue("Tweets are in incorrect order.", array[1].equals(tweet3));
+		assertTrue("Tweets are in incorrect order.", array[2].equals(tweet3));
 	}
 }

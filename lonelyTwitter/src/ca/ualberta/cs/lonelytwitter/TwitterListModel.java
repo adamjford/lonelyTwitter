@@ -32,8 +32,7 @@ public class TwitterListModel {
 	}
 	
 	public LonelyTweetModel[] getTweets() {
-		// NYI
-		return null;
+		return tweets.toArray(new LonelyTweetModel[tweets.size()]);
 	}
 	
 	public boolean hasTweet(LonelyTweetModel tweet) {
