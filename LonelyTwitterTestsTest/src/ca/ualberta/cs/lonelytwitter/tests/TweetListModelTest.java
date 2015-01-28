@@ -59,4 +59,21 @@ public class TweetListModelTest extends
 		assertTrue("Tweets are in incorrect order.", array[1].equals(tweet2));
 		assertTrue("Tweets are in incorrect order.", array[2].equals(tweet3));
 	}
+	
+	public void testThatHasTweetReturnsTrueIfTweetExistsInList() {
+		TwitterListModel tweets = new TwitterListModel();
+		NormalTweetModel tweet1 = new NormalTweetModel("test", new Date(3));
+		NormalTweetModel tweet2 = new NormalTweetModel("test 2", new Date(2));
+		NormalTweetModel tweet3 = new NormalTweetModel("test 3", new Date(1));
+		NormalTweetModel tweet4 = new NormalTweetModel("Not added.");
+		
+		tweets.addTweet(tweet1);
+		tweets.addTweet(tweet2);
+		tweets.addTweet(tweet3);
+		
+		assertTrue("hasTweet() not returning true even though tweet was added.", tweets.hasTweet(tweet1));
+		assertTrue("hasTweet() not returning true even though tweet was added.", tweets.hasTweet(tweet2));
+		assertTrue("hasTweet() not returning true even though tweet was added.", tweets.hasTweet(tweet3));
+		assertFalse("hasTweet() not returning false even though tweet was not added.", tweets.hasTweet(tweet4));
+	}
 }
