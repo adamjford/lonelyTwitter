@@ -1,7 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.*;
 import android.app.Activity;
 import android.content.Intent;
 
@@ -16,9 +16,22 @@ public class IntentReaderActivity extends Activity {
 	
 	private String text;
 	private int mode;
+	private TextView textView;
+	//private EditText textInput;
+	//private Button saveButton;
+
+	private void initializeControlReferences() {
+		textView = (TextView) findViewById(R.id.intentText);
+		//textInput = (EditText) findViewById(R.id.body);
+		//saveButton = (Button) findViewById(R.id.save);
+	}
 	
 	public String getText() {
 		return text;
+	}
+	
+	public TextView getTextView() {
+		return textView;
 	}
 	
 	@Override
@@ -26,12 +39,14 @@ public class IntentReaderActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_intent_reader);
 		
-		TextView textView = (TextView) findViewById(R.id.intentText);
+		initializeControlReferences();
+		
 		Intent intent = getIntent();
 		mode = intent.getIntExtra(TRANSFORM_KEY, NORMAL);
 		text = transformText(intent.getStringExtra(TEXT_KEY));
 		textView.setText(text);
 	}
+	
 	
 	public String transformText(String text) {
 		switch (mode) {

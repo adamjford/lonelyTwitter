@@ -19,7 +19,7 @@ public class LonelyTwitterActivityUITest extends
 		ActivityInstrumentationTestCase2<LonelyTwitterActivity> {
 
 	Instrumentation instrumentation;
-	Activity activity;
+	LonelyTwitterActivity activity;
 	EditText textInput;
 	
 	public LonelyTwitterActivityUITest() {
@@ -32,6 +32,19 @@ public class LonelyTwitterActivityUITest extends
 		activity = getActivity();
 
 		textInput = ((EditText) activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.body));
+	}
+	
+	public void testSettingText() {
+		instrumentation.runOnMainSync(new Runnable() {
+			
+			@Override
+			public void run() {
+				textInput.setText("Text");
+			}
+		});
+		
+		instrumentation.waitForIdleSync();
+		assertEquals("Text?", "Text", textInput.getText().toString());
 	}
 	
 	/*
