@@ -45,6 +45,7 @@ public class LonelyTwitterActivity extends Activity {
 				saveInFile(tweet);
 				tweets.add(tweet);
 				adapter.notifyDataSetChanged();
+				bodyText.setText("");
 			}
 		});
 	}
