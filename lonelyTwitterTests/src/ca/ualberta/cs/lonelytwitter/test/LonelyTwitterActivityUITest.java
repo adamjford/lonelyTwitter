@@ -6,10 +6,12 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity;
 import ca.ualberta.cs.lonelytwitter.NormalTweetModel;
+import ca.ualberta.cs.lonelytwitter.R;
 
 /*
  * generate this class with new.. JUnit Test Case
@@ -31,7 +33,7 @@ public class LonelyTwitterActivityUITest extends
 		instrumentation = getInstrumentation();
 		activity = getActivity();
 
-		textInput = ((EditText) activity.findViewById(ca.ualberta.cs.lonelytwitter.R.id.body));
+		textInput = ((EditText) activity.findViewById(R.id.body));
 	}
 	
 	public void testSettingText() {
@@ -45,6 +47,33 @@ public class LonelyTwitterActivityUITest extends
 		
 		instrumentation.waitForIdleSync();
 		assertEquals("Text?", "Text", textInput.getText().toString());
+	}
+	
+	public void testCreatingATweet() {
+		ListView listView = (ListView) activity.findViewById(R.id.oldTweetsList);
+		ListAdapter adapter = listView.getAdapter();
+		int oldCount = adapter.getCount();
+
+		final String tweetText = "New Tweet!";
+		instrumentation.runOnMainSync(new Runnable() {
+			
+			@Override
+			public void run() {
+				makeTweet(tweetText);
+			}
+		});
+		
+		instrumentation.waitForIdleSync();
+		
+		int newCount = adapter.getCount();
+		
+		assertEquals("Adapter did not get a new item.", oldCount+1, newCount);
+		
+		Object newItem = adapter.getItem(newCount-1);
+		
+		assertTrue("New item is not a NormalTweetModel", newItem instanceof NormalTweetModel);
+		
+		assertEquals("New item does not have correct test.", tweetText, ((NormalTweetModel)newItem).getText());
 	}
 	
 	/*
