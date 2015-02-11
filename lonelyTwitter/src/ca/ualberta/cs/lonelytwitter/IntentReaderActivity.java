@@ -45,7 +45,12 @@ public class IntentReaderActivity extends Activity {
 		Intent intent = getIntent();
 		mode = intent.getIntExtra(TRANSFORM_KEY, NORMAL);
 		text = transformText(intent.getStringExtra(TEXT_KEY));
-		textView.setText(text);
+		if(text == null) {
+			textView.setText(DEFAULT_TEXT);
+		}
+		else {
+			textView.setText(text);
+		}
 	}
 	
 	
