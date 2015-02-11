@@ -16,6 +16,12 @@ public class IntentReaderActivityTest extends ActivityInstrumentationTestCase2<I
 		super.setUp();
 	}
 	
+	public void testDefaultText() {
+		IntentReaderActivity activity = startWithText(null, IntentReaderActivity.NORMAL);
+		assertEquals("Is getText() returning the default text incorrectly?", null, activity.getText());
+		assertEquals("Is the TextView not being properly populated?", IntentReaderActivity.DEFAULT_TEXT, activity.getTextView().getText().toString());
+	}
+	
 	public void testSendText() {
 		String text = "Hello";
 		IntentReaderActivity activity = startWithText(text, IntentReaderActivity.NORMAL);

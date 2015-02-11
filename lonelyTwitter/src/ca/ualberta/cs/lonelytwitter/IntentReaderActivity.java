@@ -9,6 +9,7 @@ public class IntentReaderActivity extends Activity {
 
 	public static final String TEXT_KEY = "TEXT";
 	public static final String TRANSFORM_KEY = "TRANSFORM";
+	public static final String DEFAULT_TEXT = "Default text";
 
 	public static final int NORMAL = 1;
 	public static final int REVERSE = 2;
