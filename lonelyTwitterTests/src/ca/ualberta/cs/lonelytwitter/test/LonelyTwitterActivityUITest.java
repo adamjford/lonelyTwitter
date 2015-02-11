@@ -74,6 +74,8 @@ public class LonelyTwitterActivityUITest extends
 		assertTrue("New item is not a NormalTweetModel", newItem instanceof NormalTweetModel);
 		
 		assertEquals("New item does not have correct test.", tweetText, ((NormalTweetModel)newItem).getText());
+		
+		assertEquals("Text input was not cleared upon save.", "", textInput.getText().toString());
 	}
 	
 	/*
