@@ -53,7 +53,6 @@ public class IntentReaderActivity extends Activity {
 		}
 	}
 	
-	
 	public String transformText(String text) {
 		switch (mode) {
 			case REVERSE:

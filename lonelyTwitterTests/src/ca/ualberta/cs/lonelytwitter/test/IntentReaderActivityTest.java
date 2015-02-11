@@ -3,6 +3,7 @@ package ca.ualberta.cs.lonelytwitter.test;
 import ca.ualberta.cs.lonelytwitter.IntentReaderActivity;
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.ViewAsserts;
 import android.widget.TextView;
 
 public class IntentReaderActivityTest extends ActivityInstrumentationTestCase2<IntentReaderActivity> {
@@ -18,8 +19,11 @@ public class IntentReaderActivityTest extends ActivityInstrumentationTestCase2<I
 	
 	public void testDefaultText() {
 		IntentReaderActivity activity = startWithText(null, IntentReaderActivity.NORMAL);
+		TextView textView = activity.getTextView();
 		assertEquals("Is getText() returning the default text incorrectly?", null, activity.getText());
-		assertEquals("Is the TextView not being properly populated?", IntentReaderActivity.DEFAULT_TEXT, activity.getTextView().getText().toString());
+		assertEquals("Is the TextView not being properly populated?", IntentReaderActivity.DEFAULT_TEXT, textView.getText().toString());
+		
+		ViewAsserts.assertOnScreen(activity.getWindow().getDecorView(), textView);
 	}
 	
 	public void testSendText() {
